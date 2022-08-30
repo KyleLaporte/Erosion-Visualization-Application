@@ -25,7 +25,7 @@ public class Deformation : MonoBehaviour
     // Mesh parameters used for colouring
     private float modifiedMaxHeight;
     private float modifiedMinHeight;
-    private float heightFactor;
+    public float heightFactor;
 
     // Colour parameters
     public Gradient gradient;
@@ -54,6 +54,10 @@ public class Deformation : MonoBehaviour
     public Toggle toggleLower;
     public Toggle toggleFlatten;
     public Toggle toggleNone;
+
+    // UI Holders
+    public GameObject sliderBG;
+    public GameObject toggleBG;
 
     private void Start()
     {
@@ -110,6 +114,19 @@ public class Deformation : MonoBehaviour
             raiseToggle.image.color = Color.white;
             lowerToggle.image.color = Color.white;
             flattenToggle.image.color = Color.white;
+        }
+
+        // Enable or disable all sliders and appropriate background
+        if(terrainMod == TerrainMod.None)
+        {
+            toggleBG.gameObject.SetActive(true);
+            sliderBG.gameObject.SetActive(false);
+
+        }
+        else
+        {
+            toggleBG.gameObject.SetActive(false);
+            sliderBG.gameObject.SetActive(true);
         }
 
         // Slider check

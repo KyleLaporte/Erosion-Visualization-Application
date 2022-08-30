@@ -170,10 +170,11 @@ public class MeshGenerator : MonoBehaviour
 
     public void GenerateFlat()
     {
+        Deformation deformation = FindObjectOfType<Deformation>();
         flatHeightmap = new float[currentHeightmap.Length];
         for(int i = 0; i < currentHeightmap.Length; i++)
         {
-            flatHeightmap[i] = 0;
+            flatHeightmap[i] = deformation.flattenStrength / deformation.heightFactor;
         }
     }
 
@@ -543,6 +544,7 @@ public class MeshGenerator : MonoBehaviour
 
     public void ButtonGenerateFlat()
     {
+        GenerateFlat();
         Deformation deformation = FindObjectOfType<Deformation>();
         deformation.terrainMod = Deformation.TerrainMod.None;
         deformation.toggleNone.isOn = true;
